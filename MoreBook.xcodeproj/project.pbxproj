@@ -19,6 +19,7 @@
 		8103B2132D9E55C800F2121D /* AddViewPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8103B2122D9E55C800F2121D /* AddViewPage.swift */; };
 		8103B2152D9E681100F2121D /* ReadMe.md in Resources */ = {isa = PBXBuildFile; fileRef = 8103B2142D9E680900F2121D /* ReadMe.md */; };
 		8103B2192D9E68B000F2121D /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 8103B2182D9E68B000F2121D /* .gitignore */; };
+		8103B21B2D9E6E5B00F2121D /* GoogleBooksFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8103B21A2D9E6E5000F2121D /* GoogleBooksFunc.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,8 @@
 		8103B2122D9E55C800F2121D /* AddViewPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewPage.swift; sourceTree = "<group>"; };
 		8103B2142D9E680900F2121D /* ReadMe.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ReadMe.md; sourceTree = "<group>"; };
 		8103B2182D9E68B000F2121D /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		8103B21A2D9E6E5000F2121D /* GoogleBooksFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleBooksFunc.swift; sourceTree = "<group>"; };
+		8103B21C2D9E6E7000F2121D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +81,7 @@
 		8103B1FA2D9E2AD600F2121D /* MoreBook */ = {
 			isa = PBXGroup;
 			children = (
+				8103B21C2D9E6E7000F2121D /* Info.plist */,
 				8103B1F62D9E2AD600F2121D /* Preview Content */,
 				8103B1F72D9E2AD600F2121D /* Assets.xcassets */,
 				8103B1F82D9E2AD600F2121D /* MainView.swift */,
@@ -92,6 +96,7 @@
 		8103B20A2D9E54B600F2121D /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				8103B21A2D9E6E5000F2121D /* GoogleBooksFunc.swift */,
 				8103B2062D9E30BA00F2121D /* HomePage.swift */,
 				8103B2122D9E55C800F2121D /* AddViewPage.swift */,
 			);
@@ -183,6 +188,7 @@
 				8103B2052D9E2B8500F2121D /* LoadingView.swift in Sources */,
 				8103B2072D9E30BE00F2121D /* HomePage.swift in Sources */,
 				8103B2092D9E487A00F2121D /* ClolorFun.swift in Sources */,
+				8103B21B2D9E6E5B00F2121D /* GoogleBooksFunc.swift in Sources */,
 				8103B2132D9E55C800F2121D /* AddViewPage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -320,6 +326,7 @@
 				DEVELOPMENT_TEAM = 9GNP4TPU8Y;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MoreBook/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -353,6 +360,7 @@
 				DEVELOPMENT_TEAM = 9GNP4TPU8Y;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MoreBook/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
