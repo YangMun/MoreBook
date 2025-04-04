@@ -118,12 +118,6 @@ struct AddViewPage: View {
                         .padding(.vertical, 10)
                     }
                     .frame(height: 50)
-                    
-                    // 검색 힌트 텍스트
-                    Text("도서관에서 책을 찾는 것처럼 검색해보세요")
-                        .font(.custom("Times New Roman", size: 14))
-                        .foregroundColor(Color(red: 0.4, green: 0.3, blue: 0.2))
-                        .italic()
                 }
                 .padding(.horizontal)
                 .padding(.top, 15)
@@ -196,78 +190,125 @@ struct AddViewPage: View {
 struct SearchBookCard: View {
     let preview: BookPreview
     @StateObject private var imageLoader = ImageLoader()
+    @State private var isPressed = false // 버튼 눌림 상태
+    @State private var navigateToDetail = false
+    @State private var bookDetail: BookDetail?
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 5) {
-            // 책 커버 이미지
-            if let imageUrl = preview.imageUrl {
-                Group {
-                    if let uiImage = imageLoader.image {
-                        Image(uiImage: uiImage)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                    } else {
-                        Rectangle()
-                            .fill(Color.gray.opacity(0.2))
-                            .overlay(
-                                Group {
-                                    if imageLoader.isLoading {
-                                        ProgressView()
-                                    } else {
-                                        Image(systemName: "book.closed")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: 30)
-                                            .foregroundColor(.gray)
-                                    }
-                                }
-                            )
+        Button(action: {
+            Task {
+                do {
+                    print("=== 도서 상세 정보 요청 시작 ===")
+                    print("도서 ID: \(preview.id)")
+                    
+                    let detail = try await GoogleBooksAPI.shared.fetchBookDetail(bookId: preview.id)
+                    
+                    print("=== 도서 상세 정보 ===")
+                    print("제목: \(detail.title)")
+                    print("저자: \(detail.authors?.joined(separator: ", ") ?? "정보 없음")")
+                    print("출판일: \(detail.publishedDate ?? "정보 없음")")
+                    print("페이지 수: \(detail.pageCount ?? 0)")
+                    print("언어: \(detail.language ?? "정보 없음")")
+                    print("설명: \(detail.description ?? "정보 없음")")
+                    print("썸네일 URL: \(detail.thumbnailUrl ?? "정보 없음")")
+                    print("=========================")
+                    
+                    // UI 업데이트는 메인 스레드에서
+                    await MainActor.run {
+                        self.bookDetail = detail
+                        navigateToDetail = true
                     }
+                } catch {
+                    print("도서 상세 정보 조회 중 오류 발생: \(error.localizedDescription)")
                 }
-                .frame(width: 120, height: 180)
-                .cornerRadius(8)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(Color.black.opacity(0.4), lineWidth: 1.5)
-                )
-                .shadow(color: Color.black.opacity(0.2), radius: 3, x: 2, y: 2)
-                .onAppear {
-                    imageLoader.loadImage(from: imageUrl)
-                }
-                .onDisappear {
-                    imageLoader.cancel()
-                }
-            } else {
-                Rectangle()
-                    .fill(Color.gray.opacity(0.2))
+            }
+        }) {
+            VStack(alignment: .leading, spacing: 5) {
+                // 책 커버 이미지
+                if let imageUrl = preview.imageUrl {
+                    Group {
+                        if let uiImage = imageLoader.image {
+                            Image(uiImage: uiImage)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                        } else {
+                            Rectangle()
+                                .fill(Color.gray.opacity(0.2))
+                                .overlay(
+                                    Group {
+                                        if imageLoader.isLoading {
+                                            ProgressView()
+                                        } else {
+                                            Image(systemName: "book.closed")
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(width: 30)
+                                                .foregroundColor(.gray)
+                                        }
+                                    }
+                                )
+                        }
+                    }
                     .frame(width: 120, height: 180)
-                    .overlay(
-                        Image(systemName: "book.closed")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 30)
-                            .foregroundColor(.gray)
-                    )
                     .cornerRadius(8)
                     .overlay(
                         RoundedRectangle(cornerRadius: 8)
                             .stroke(Color.black.opacity(0.4), lineWidth: 1.5)
                     )
                     .shadow(color: Color.black.opacity(0.2), radius: 3, x: 2, y: 2)
-            }
-            
-            Text(preview.title)
-                .font(.system(size: 14, weight: .medium))
-                .lineLimit(1)
-            
-            if let authors = preview.authors {
-                Text(authors.joined(separator: ", "))
-                    .font(.system(size: 12))
-                    .foregroundColor(.gray)
+                    .onAppear {
+                        imageLoader.loadImage(from: imageUrl)
+                    }
+                    .onDisappear {
+                        imageLoader.cancel()
+                    }
+                } else {
+                    Rectangle()
+                        .fill(Color.gray.opacity(0.2))
+                        .frame(width: 120, height: 180)
+                        .overlay(
+                            Image(systemName: "book.closed")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 30)
+                                .foregroundColor(.gray)
+                        )
+                        .cornerRadius(8)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(Color.black.opacity(0.4), lineWidth: 1.5)
+                        )
+                        .shadow(color: Color.black.opacity(0.2), radius: 3, x: 2, y: 2)
+                }
+                
+                Text(preview.title)
+                    .font(.system(size: 14, weight: .medium))
                     .lineLimit(1)
+                    .foregroundColor(.black)
+                
+                if let authors = preview.authors {
+                    Text(authors.joined(separator: ", "))
+                        .font(.system(size: 12))
+                        .foregroundColor(.gray)
+                        .lineLimit(1)
+                }
             }
+            .frame(width: 120)
+            .scaleEffect(isPressed ? 0.95 : 1.0)
+            .animation(.easeInOut(duration: 0.1), value: isPressed)
         }
-        .frame(width: 120)
+        .buttonStyle(PlainButtonStyle())
+        .onLongPressGesture(minimumDuration: .infinity, maximumDistance: .infinity, pressing: { pressing in
+            isPressed = pressing
+        }, perform: { })
+        .background(
+            NavigationLink(
+                destination: BookDetailPage(bookDetail: bookDetail),
+                isActive: $navigateToDetail
+            ) {
+                EmptyView()
+            }
+        )
     }
 }
 

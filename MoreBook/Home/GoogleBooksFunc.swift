@@ -92,6 +92,78 @@ struct BookResponse: Codable {
     let totalItems: Int
 }
 
+// 도서 상세 정보를 담을 모델
+struct BookDetail: Codable, Equatable {
+    let id: String
+    let title: String
+    private let _authors: [String]?
+    let publishedDate: String?
+    let description: String?
+    let pageCount: Int?
+    let thumbnailUrl: String?
+    let language: String?
+    
+    // 저자 이름에서 괄호와 그 안의 내용을 제거하는 계산 프로퍼티
+    var authors: [String]? {
+        _authors?.map { author in
+            if let range = author.range(of: "\\(.*\\)", options: .regularExpression) {
+                return String(author[..<range.lowerBound]).trimmingCharacters(in: .whitespaces)
+            }
+            return author
+        }
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case volumeInfo
+        case title
+        case _authors = "authors"
+        case publishedDate
+        case description
+        case pageCount
+        case imageLinks
+        case thumbnail
+        case language
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(String.self, forKey: .id)
+        
+        let volumeInfo = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .volumeInfo)
+        title = try volumeInfo.decode(String.self, forKey: .title)
+        _authors = try? volumeInfo.decode([String].self, forKey: ._authors)
+        publishedDate = try? volumeInfo.decode(String.self, forKey: .publishedDate)
+        description = try? volumeInfo.decode(String.self, forKey: .description)
+        pageCount = try? volumeInfo.decode(Int.self, forKey: .pageCount)
+        language = try? volumeInfo.decode(String.self, forKey: .language)
+        
+        if let imageLinks = try? volumeInfo.nestedContainer(keyedBy: CodingKeys.self, forKey: .imageLinks) {
+            thumbnailUrl = try? imageLinks.decode(String.self, forKey: .thumbnail)
+        } else {
+            thumbnailUrl = nil
+        }
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: .id)
+        
+        var volumeInfo = container.nestedContainer(keyedBy: CodingKeys.self, forKey: .volumeInfo)
+        try volumeInfo.encode(title, forKey: .title)
+        try volumeInfo.encodeIfPresent(_authors, forKey: ._authors)
+        try volumeInfo.encodeIfPresent(publishedDate, forKey: .publishedDate)
+        try volumeInfo.encodeIfPresent(description, forKey: .description)
+        try volumeInfo.encodeIfPresent(pageCount, forKey: .pageCount)
+        try volumeInfo.encodeIfPresent(language, forKey: .language)
+        
+        if let thumbnailUrl = thumbnailUrl {
+            var imageLinks = volumeInfo.nestedContainer(keyedBy: CodingKeys.self, forKey: .imageLinks)
+            try imageLinks.encode(thumbnailUrl, forKey: .thumbnail)
+        }
+    }
+}
+
 // Google Books API 관리 클래스
 class GoogleBooksAPI {
     static let shared = GoogleBooksAPI()
@@ -131,6 +203,27 @@ class GoogleBooksAPI {
         // JSON 디코딩
         let bookResponse = try JSONDecoder().decode(BookResponse.self, from: data)
         return bookResponse
+    }
+    
+    // 도서 상세 정보 조회 함수
+    func fetchBookDetail(bookId: String) async throws -> BookDetail {
+        // URL 구성
+        let urlString = "\(baseURL)/\(bookId)?key=\(apiKey)"
+        guard let url = URL(string: urlString) else {
+            throw URLError(.badURL)
+        }
+        
+        // API 호출
+        let (data, response) = try await URLSession.shared.data(from: url)
+        
+        guard let httpResponse = response as? HTTPURLResponse,
+              httpResponse.statusCode == 200 else {
+            throw URLError(.badServerResponse)
+        }
+        
+        // JSON 디코딩
+        let bookDetail = try JSONDecoder().decode(BookDetail.self, from: data)
+        return bookDetail
     }
 }
 
