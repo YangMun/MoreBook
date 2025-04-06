@@ -53,9 +53,6 @@ struct BookInfoView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Spacer()
-                .frame(height: 20)
-            
             // 제목
             Text(title)
                 .font(.system(size: 20, weight: .bold))
@@ -73,10 +70,7 @@ struct BookInfoView: View {
                         .underline()
                 }
             }
-            
-            Spacer()
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 
@@ -84,6 +78,39 @@ struct BookInfoView: View {
 struct BookDetailPage: View {
     @Environment(\.presentationMode) var presentationMode
     var bookDetail: BookDetail?
+    @State private var isRegisterPressed = false  // 버튼 눌림 상태 추가
+    
+    // 등록 버튼 컴포넌트
+    private var registerButton: some View {
+        Button(action: {
+            // 등록 버튼 액션
+        }) {
+            Text("등록")
+                .font(.system(size: 16, weight: .medium))
+                .foregroundColor(ColorFun.buttonText)
+                .padding(.vertical, 10)
+                .padding(.horizontal, 20)
+                .frame(width: 140)
+                .background(ColorFun.buttonBackground)
+                .cornerRadius(8)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 8)
+                        .stroke(Color.black.opacity(0.3), lineWidth: 1.5)
+                )
+                .scaleEffect(isRegisterPressed ? 0.95 : 1.0)  // 눌림 효과
+                .animation(.easeInOut(duration: 0.1), value: isRegisterPressed)  // 애니메이션
+        }
+        .simultaneousGesture(  // 터치 제스처 추가
+            DragGesture(minimumDistance: 0)
+                .onChanged { _ in
+                    isRegisterPressed = true
+                }
+                .onEnded { _ in
+                    isRegisterPressed = false
+                }
+        )
+        .buttonStyle(PlainButtonStyle())
+    }
     
     var body: some View {
         ZStack {
@@ -91,7 +118,7 @@ struct BookDetailPage: View {
             ColorFun.background
                 .edgesIgnoringSafeArea(.all)
             
-            VStack(spacing: 0) {
+            VStack(spacing: 20) {
                 // 네비게이션 헤더
                 AddHeader(title: "책 정보") {
                     presentationMode.wrappedValue.dismiss()
@@ -99,7 +126,6 @@ struct BookDetailPage: View {
                 
                 ScrollView {
                     VStack(spacing: 0) {
-                        // 책 정보 영역
                         HStack {
                             Spacer(minLength: 0)
                             
@@ -108,14 +134,22 @@ struct BookDetailPage: View {
                                 // 책 표지 이미지
                                 BookCoverImage(thumbnailUrl: bookDetail?.thumbnailUrl)
                                 
-                                // 책 정보
-                                BookInfoView(
-                                    title: bookDetail?.title ?? "",
-                                    authors: bookDetail?.authors
-                                )
+                                // 오른쪽 컨텐츠 영역
+                                VStack(alignment: .leading) {
+                                    // 책 정보
+                                    BookInfoView(
+                                        title: bookDetail?.title ?? "",
+                                        authors: bookDetail?.authors
+                                    )
+                                    
+                                    Spacer(minLength: 0)  // 유연한 공간 확보
+                                    
+                                    // 등록 버튼
+                                    registerButton
+                                }
+                                .frame(height: 180)  // 이미지 높이와 동일하게 설정
                             }
                             .frame(maxWidth: 500)
-                            .padding(.vertical, 24)
                             .padding(.horizontal, 20)
                             
                             Spacer(minLength: 0)

@@ -9,16 +9,16 @@ struct MainView: View {
                     Text("홈")
                 }
             
+            MyBook()
+                .tabItem {
+                    Image(systemName: "person")
+                    Text("나의 도서")
+                }
+            
             StatisticsView()
                 .tabItem {
                     Image(systemName: "chart.bar")
                     Text("통계")
-                }
-            
-            ProfileView()
-                .tabItem {
-                    Image(systemName: "person")
-                    Text("프로필")
                 }
             
             SettingsView()
@@ -72,28 +72,6 @@ struct StatisticsView: View {
                 Spacer()
                 
                 Text("통계 페이지")
-                    .font(.title)
-                
-                Spacer()
-            }
-            .padding()
-        }
-    }
-}
-
-struct ProfileView: View {
-    var body: some View {
-        ZStack {
-            // 배경색 설정
-            ColorFun.background
-                .edgesIgnoringSafeArea(.all)
-            
-            VStack {
-                BookPageHeader(title: "프로필")
-                
-                Spacer()
-                
-                Text("프로필 페이지")
                     .font(.title)
                 
                 Spacer()

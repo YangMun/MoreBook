@@ -24,6 +24,7 @@
 		8146CE252DA262AD00611C1C /* BookModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8146CE232DA262AD00611C1C /* BookModel.xcdatamodeld */; };
 		8146CE282DA263B100611C1C /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8146CE272DA263B000611C1C /* CoreDataManager.swift */; };
 		8146CE2A2DA268B400611C1C /* RecentlyBookCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8146CE292DA268AD00611C1C /* RecentlyBookCard.swift */; };
+		8146CE2C2DA26ED300611C1C /* MyBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8146CE2B2DA26ED000611C1C /* MyBook.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		8146CE242DA262AD00611C1C /* BookModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BookModel.xcdatamodel; sourceTree = "<group>"; };
 		8146CE272DA263B000611C1C /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		8146CE292DA268AD00611C1C /* RecentlyBookCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyBookCard.swift; sourceTree = "<group>"; };
+		8146CE2B2DA26ED000611C1C /* MyBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBook.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 		8103B20A2D9E54B600F2121D /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				8146CE2B2DA26ED000611C1C /* MyBook.swift */,
 				8146CE292DA268AD00611C1C /* RecentlyBookCard.swift */,
 				8103B21A2D9E6E5000F2121D /* GoogleBooksFunc.swift */,
 				8103B2062D9E30BA00F2121D /* HomePage.swift */,
@@ -203,6 +206,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8146CE2C2DA26ED300611C1C /* MyBook.swift in Sources */,
 				8103B1FB2D9E2AD600F2121D /* MainView.swift in Sources */,
 				8146CE252DA262AD00611C1C /* BookModel.xcdatamodeld in Sources */,
 				8146CE2A2DA268B400611C1C /* RecentlyBookCard.swift in Sources */,

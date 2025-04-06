@@ -107,7 +107,8 @@ struct HomePage: View {
                                     RecentlyBookCard(
                                         title: book.title ?? "",
                                         authors: book.authors ?? "",
-                                        thumbnailUrl: book.thumbnailUrl
+                                        thumbnailUrl: book.thumbnailUrl,
+                                        bookId: book.id ?? ""
                                     )
                                 }
                             }
