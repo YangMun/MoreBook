@@ -21,6 +21,9 @@
 		8103B2192D9E68B000F2121D /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 8103B2182D9E68B000F2121D /* .gitignore */; };
 		8103B21B2D9E6E5B00F2121D /* GoogleBooksFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8103B21A2D9E6E5000F2121D /* GoogleBooksFunc.swift */; };
 		8103B21E2D9F809500F2121D /* BookDetailPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8103B21D2D9F808B00F2121D /* BookDetailPage.swift */; };
+		8146CE252DA262AD00611C1C /* BookModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8146CE232DA262AD00611C1C /* BookModel.xcdatamodeld */; };
+		8146CE282DA263B100611C1C /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8146CE272DA263B000611C1C /* CoreDataManager.swift */; };
+		8146CE2A2DA268B400611C1C /* RecentlyBookCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8146CE292DA268AD00611C1C /* RecentlyBookCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +42,9 @@
 		8103B21A2D9E6E5000F2121D /* GoogleBooksFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleBooksFunc.swift; sourceTree = "<group>"; };
 		8103B21C2D9E6E7000F2121D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8103B21D2D9F808B00F2121D /* BookDetailPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailPage.swift; sourceTree = "<group>"; };
+		8146CE242DA262AD00611C1C /* BookModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BookModel.xcdatamodel; sourceTree = "<group>"; };
+		8146CE272DA263B000611C1C /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		8146CE292DA268AD00611C1C /* RecentlyBookCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyBookCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +62,7 @@
 		8103B1DB2D9E2ACD00F2121D = {
 			isa = PBXGroup;
 			children = (
+				8146CE232DA262AD00611C1C /* BookModel.xcdatamodeld */,
 				8103B2142D9E680900F2121D /* ReadMe.md */,
 				8103B2182D9E68B000F2121D /* .gitignore */,
 				8103B2022D9E2B7B00F2121D /* LoadingAni.json */,
@@ -83,6 +90,7 @@
 		8103B1FA2D9E2AD600F2121D /* MoreBook */ = {
 			isa = PBXGroup;
 			children = (
+				8146CE262DA2639F00611C1C /* CoreData */,
 				8103B21C2D9E6E7000F2121D /* Info.plist */,
 				8103B1F62D9E2AD600F2121D /* Preview Content */,
 				8103B1F72D9E2AD600F2121D /* Assets.xcassets */,
@@ -98,12 +106,21 @@
 		8103B20A2D9E54B600F2121D /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				8146CE292DA268AD00611C1C /* RecentlyBookCard.swift */,
 				8103B21A2D9E6E5000F2121D /* GoogleBooksFunc.swift */,
 				8103B2062D9E30BA00F2121D /* HomePage.swift */,
 				8103B2122D9E55C800F2121D /* AddViewPage.swift */,
 				8103B21D2D9F808B00F2121D /* BookDetailPage.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		8146CE262DA2639F00611C1C /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				8146CE272DA263B000611C1C /* CoreDataManager.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -187,12 +204,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				8103B1FB2D9E2AD600F2121D /* MainView.swift in Sources */,
+				8146CE252DA262AD00611C1C /* BookModel.xcdatamodeld in Sources */,
+				8146CE2A2DA268B400611C1C /* RecentlyBookCard.swift in Sources */,
 				8103B1FC2D9E2AD600F2121D /* MoreBookApp.swift in Sources */,
 				8103B21E2D9F809500F2121D /* BookDetailPage.swift in Sources */,
 				8103B2052D9E2B8500F2121D /* LoadingView.swift in Sources */,
 				8103B2072D9E30BE00F2121D /* HomePage.swift in Sources */,
 				8103B2092D9E487A00F2121D /* ClolorFun.swift in Sources */,
 				8103B21B2D9E6E5B00F2121D /* GoogleBooksFunc.swift in Sources */,
+				8146CE282DA263B100611C1C /* CoreDataManager.swift in Sources */,
 				8103B2132D9E55C800F2121D /* AddViewPage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -428,6 +448,19 @@
 			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		8146CE232DA262AD00611C1C /* BookModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8146CE242DA262AD00611C1C /* BookModel.xcdatamodel */,
+			);
+			currentVersion = 8146CE242DA262AD00611C1C /* BookModel.xcdatamodel */;
+			path = BookModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 8103B1DC2D9E2ACD00F2121D /* Project object */;
 }

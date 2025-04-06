@@ -3,6 +3,7 @@ import SwiftUI
 struct HomePage: View {
     @State private var selectedCategory = "베스트셀러"
     @State private var showAddView = false
+    @State private var recentBooks: [RecentBook] = []
     
     var body: some View {
         NavigationView {
@@ -102,8 +103,12 @@ struct HomePage: View {
                         
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 20) {
-                                ForEach(0..<4) { _ in
-                                    BookCard()
+                                ForEach(recentBooks, id: \.id) { book in
+                                    RecentlyBookCard(
+                                        title: book.title ?? "",
+                                        authors: book.authors ?? "",
+                                        thumbnailUrl: book.thumbnailUrl
+                                    )
                                 }
                             }
                             .padding(.horizontal)
@@ -113,6 +118,10 @@ struct HomePage: View {
                     Spacer()
                 }
                 .padding(.vertical)
+                .onAppear {
+                    // 최근 본 도서 목록 가져오기
+                    recentBooks = CoreDataManager.shared.fetchRecentBooks()
+                }
             }
             .navigationBarHidden(true)
         }
@@ -183,51 +192,6 @@ struct CategoryButton: View {
                 RoundedRectangle(cornerRadius: 20)
                     .stroke(Color.black.opacity(0.2), lineWidth: 0.5)
             )
-    }
-}
-
-// 책 카드 컴포넌트
-struct BookCard: View {
-    var body: some View {
-        VStack(alignment: .leading, spacing: 5) {
-            // 책 커버 이미지
-            Rectangle()
-                .fill(Color.gray.opacity(0.2))
-                .frame(width: 120, height: 180)
-                .overlay(
-                    Image(systemName: "book.closed")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 50)
-                        .foregroundColor(.gray)
-                )
-                .cornerRadius(8)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(Color.black.opacity(0.4), lineWidth: 1.5)
-                )
-                // 책 느낌을 위한 그림자 효과 강화
-                .shadow(color: Color.black.opacity(0.2), radius: 3, x: 2, y: 2)
-            
-            Text("도서 제목")
-                .font(.system(size: 14, weight: .medium))
-                .lineLimit(1)
-            
-            Text("작가 이름")
-                .font(.system(size: 12))
-                .foregroundColor(.gray)
-                .lineLimit(1)
-            
-            // 별점
-            HStack(spacing: 1) {
-                ForEach(0..<5) { _ in
-                    Image(systemName: "star.fill")
-                        .font(.system(size: 10))
-                        .foregroundColor(ColorFun.star)
-                }
-            }
-        }
-        .frame(width: 120)
     }
 }
 

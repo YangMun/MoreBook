@@ -98,7 +98,7 @@ struct BookDetailPage: View {
                 }
                 
                 ScrollView {
-                    VStack {
+                    VStack(spacing: 0) {
                         // 책 정보 영역
                         HStack {
                             Spacer(minLength: 0)
@@ -122,6 +122,32 @@ struct BookDetailPage: View {
                         }
                         .padding(.horizontal, 16)
                         .padding(.top, 5)
+                        
+                        // 구분선
+                        Rectangle()
+                            .frame(height: 5)
+                            .foregroundColor(Color.black.opacity(0.2))
+                            .padding(.horizontal, 36)
+                            .padding(.top, 10)
+                        
+                        // 책 설명
+                        if let description = bookDetail?.description {
+                            VStack(alignment: .leading, spacing: 16) {
+                                Text("요약: ")
+                                    .font(.system(size: 18, weight: .bold))
+                                    .padding(.bottom, 4)
+                                
+                                Text(description)
+                                    .font(.system(size: 16))
+                                    .lineSpacing(8)  // 줄 간격
+                                    .fixedSize(horizontal: false, vertical: true)  // 자동 줄바꿈
+                                    .multilineTextAlignment(.leading)  // 왼쪽 정렬
+                            }
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.horizontal, 36)
+                            .padding(.top, 20)
+                            .padding(.bottom, 24)
+                        }
                     }
                 }
                 
@@ -130,6 +156,12 @@ struct BookDetailPage: View {
             .padding(.vertical)
         }
         .navigationBarHidden(true)
+        .onAppear {
+            // 페이지 방문 시 자동 저장
+            if let bookDetail = bookDetail {
+                CoreDataManager.shared.saveRecentBook(bookDetail)
+            }
+        }
     }
 }
 

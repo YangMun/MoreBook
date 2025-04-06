@@ -98,10 +98,27 @@ struct BookDetail: Codable, Equatable {
     let title: String
     private let _authors: [String]?
     let publishedDate: String?
-    let description: String?
+    private let _description: String?
     let pageCount: Int?
     let thumbnailUrl: String?
     let language: String?
+    
+    // HTML 태그를 제거하고 정리된 설명을 반환하는 계산 프로퍼티
+    var description: String? {
+        guard let desc = _description else { return nil }
+        
+        // HTML 태그 제거
+        let cleanedText = desc.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression)
+        
+        // HTML 엔티티 디코딩
+        return cleanedText
+            .replacingOccurrences(of: "&quot;", with: "\"")
+            .replacingOccurrences(of: "&amp;", with: "&")
+            .replacingOccurrences(of: "&lt;", with: "<")
+            .replacingOccurrences(of: "&gt;", with: ">")
+            .replacingOccurrences(of: "&nbsp;", with: " ")
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+    }
     
     // 저자 이름에서 괄호와 그 안의 내용을 제거하는 계산 프로퍼티
     var authors: [String]? {
@@ -119,7 +136,7 @@ struct BookDetail: Codable, Equatable {
         case title
         case _authors = "authors"
         case publishedDate
-        case description
+        case _description = "description"
         case pageCount
         case imageLinks
         case thumbnail
@@ -134,7 +151,7 @@ struct BookDetail: Codable, Equatable {
         title = try volumeInfo.decode(String.self, forKey: .title)
         _authors = try? volumeInfo.decode([String].self, forKey: ._authors)
         publishedDate = try? volumeInfo.decode(String.self, forKey: .publishedDate)
-        description = try? volumeInfo.decode(String.self, forKey: .description)
+        _description = try? volumeInfo.decode(String.self, forKey: ._description)
         pageCount = try? volumeInfo.decode(Int.self, forKey: .pageCount)
         language = try? volumeInfo.decode(String.self, forKey: .language)
         
@@ -153,7 +170,7 @@ struct BookDetail: Codable, Equatable {
         try volumeInfo.encode(title, forKey: .title)
         try volumeInfo.encodeIfPresent(_authors, forKey: ._authors)
         try volumeInfo.encodeIfPresent(publishedDate, forKey: .publishedDate)
-        try volumeInfo.encodeIfPresent(description, forKey: .description)
+        try volumeInfo.encodeIfPresent(_description, forKey: ._description)
         try volumeInfo.encodeIfPresent(pageCount, forKey: .pageCount)
         try volumeInfo.encodeIfPresent(language, forKey: .language)
         
