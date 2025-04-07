@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E0F5AF9C5A0E7646C5C504C /* Pods_MoreBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75312AF8EDD882ECC1DDB69D /* Pods_MoreBook.framework */; };
 		8103B1FB2D9E2AD600F2121D /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8103B1F82D9E2AD600F2121D /* MainView.swift */; };
 		8103B1FC2D9E2AD600F2121D /* MoreBookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8103B1F92D9E2AD600F2121D /* MoreBookApp.swift */; };
 		8103B1FD2D9E2AD600F2121D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8103B1F52D9E2AD600F2121D /* Preview Assets.xcassets */; };
@@ -25,9 +26,14 @@
 		8146CE282DA263B100611C1C /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8146CE272DA263B000611C1C /* CoreDataManager.swift */; };
 		8146CE2A2DA268B400611C1C /* RecentlyBookCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8146CE292DA268AD00611C1C /* RecentlyBookCard.swift */; };
 		8146CE2C2DA26ED300611C1C /* MyBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8146CE2B2DA26ED000611C1C /* MyBook.swift */; };
+		8146CE2E2DA3B6F600611C1C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8146CE2D2DA3B6F600611C1C /* GoogleService-Info.plist */; };
+		8146CE312DA3B7CC00611C1C /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 8146CE302DA3B7CC00611C1C /* FirebaseAnalytics */; };
+		8146CE332DA3B7CC00611C1C /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 8146CE322DA3B7CC00611C1C /* FirebaseFirestore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		08EBAAB26454DEAC40639B9D /* Pods-MoreBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoreBook.release.xcconfig"; path = "Target Support Files/Pods-MoreBook/Pods-MoreBook.release.xcconfig"; sourceTree = "<group>"; };
+		75312AF8EDD882ECC1DDB69D /* Pods_MoreBook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MoreBook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8103B1E42D9E2ACD00F2121D /* MoreBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoreBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8103B1F52D9E2AD600F2121D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8103B1F72D9E2AD600F2121D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -47,6 +53,8 @@
 		8146CE272DA263B000611C1C /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		8146CE292DA268AD00611C1C /* RecentlyBookCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyBookCard.swift; sourceTree = "<group>"; };
 		8146CE2B2DA26ED000611C1C /* MyBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBook.swift; sourceTree = "<group>"; };
+		8146CE2D2DA3B6F600611C1C /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F1C45CD598951F48FC3C3022 /* Pods-MoreBook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoreBook.debug.xcconfig"; path = "Target Support Files/Pods-MoreBook/Pods-MoreBook.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,7 +62,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8146CE312DA3B7CC00611C1C /* FirebaseAnalytics in Frameworks */,
 				8103B2012D9E2B2B00F2121D /* Lottie in Frameworks */,
+				8146CE332DA3B7CC00611C1C /* FirebaseFirestore in Frameworks */,
+				2E0F5AF9C5A0E7646C5C504C /* Pods_MoreBook.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +81,9 @@
 				8103B2022D9E2B7B00F2121D /* LoadingAni.json */,
 				8103B1FA2D9E2AD600F2121D /* MoreBook */,
 				8103B1E52D9E2ACD00F2121D /* Products */,
+				8146CE2D2DA3B6F600611C1C /* GoogleService-Info.plist */,
+				D952B71CF47E391FE3B693E8 /* Pods */,
+				DDFD2072AB01173D1216941D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -126,6 +140,23 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
+		D952B71CF47E391FE3B693E8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F1C45CD598951F48FC3C3022 /* Pods-MoreBook.debug.xcconfig */,
+				08EBAAB26454DEAC40639B9D /* Pods-MoreBook.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		DDFD2072AB01173D1216941D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				75312AF8EDD882ECC1DDB69D /* Pods_MoreBook.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -133,6 +164,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8103B1F22D9E2ACF00F2121D /* Build configuration list for PBXNativeTarget "MoreBook" */;
 			buildPhases = (
+				5C3F6E863A9659C3B4EA16A2 /* [CP] Check Pods Manifest.lock */,
 				8103B1E02D9E2ACD00F2121D /* Sources */,
 				8103B1E12D9E2ACD00F2121D /* Frameworks */,
 				8103B1E22D9E2ACD00F2121D /* Resources */,
@@ -144,6 +176,8 @@
 			name = MoreBook;
 			packageProductDependencies = (
 				8103B2002D9E2B2B00F2121D /* Lottie */,
+				8146CE302DA3B7CC00611C1C /* FirebaseAnalytics */,
+				8146CE322DA3B7CC00611C1C /* FirebaseFirestore */,
 			);
 			productName = MoreBook;
 			productReference = 8103B1E42D9E2ACD00F2121D /* MoreBook.app */;
@@ -175,6 +209,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				8103B1FF2D9E2B2B00F2121D /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				8146CE2F2DA3B7CC00611C1C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 8103B1E52D9E2ACD00F2121D /* Products */;
@@ -196,10 +231,36 @@
 				8103B1FE2D9E2AD600F2121D /* Assets.xcassets in Resources */,
 				8103B2152D9E681100F2121D /* ReadMe.md in Resources */,
 				8103B2032D9E2B7B00F2121D /* LoadingAni.json in Resources */,
+				8146CE2E2DA3B6F600611C1C /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5C3F6E863A9659C3B4EA16A2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MoreBook-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8103B1E02D9E2ACD00F2121D /* Sources */ = {
@@ -345,6 +406,7 @@
 		};
 		8103B1F32D9E2ACF00F2121D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F1C45CD598951F48FC3C3022 /* Pods-MoreBook.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -353,13 +415,15 @@
 				DEVELOPMENT_ASSET_PATHS = "\"MoreBook/Preview Content\"";
 				DEVELOPMENT_TEAM = 9GNP4TPU8Y;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MoreBook/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -379,6 +443,7 @@
 		};
 		8103B1F42D9E2ACF00F2121D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 08EBAAB26454DEAC40639B9D /* Pods-MoreBook.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -387,13 +452,15 @@
 				DEVELOPMENT_ASSET_PATHS = "\"MoreBook/Preview Content\"";
 				DEVELOPMENT_TEAM = 9GNP4TPU8Y;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MoreBook/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -443,6 +510,14 @@
 				minimumVersion = 4.5.1;
 			};
 		};
+		8146CE2F2DA3B7CC00611C1C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.11.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -450,6 +525,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8103B1FF2D9E2B2B00F2121D /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
+		};
+		8146CE302DA3B7CC00611C1C /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8146CE2F2DA3B7CC00611C1C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		8146CE322DA3B7CC00611C1C /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8146CE2F2DA3B7CC00611C1C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
 		};
 /* End XCSwiftPackageProductDependency section */
 
