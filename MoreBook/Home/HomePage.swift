@@ -113,8 +113,10 @@ struct HomePage: View {
                                 }
                             }
                             .padding(.horizontal)
+                            .padding(.top, 10)
                         }
                     }
+                    .padding(.top, 20)
                     
                     Spacer()
                 }
@@ -205,19 +207,11 @@ struct BookHeader: View {
             // 상단 구분선
             Rectangle()
                 .frame(height: 1.5)
-                .foregroundColor(Color.black.opacity(0.4))
+                .foregroundColor(Color.black.opacity(0.6))
                 .padding(.horizontal, 0)
             
             // 헤더 내용
             HStack {
-                Button(action: {
-                    // 메뉴 버튼 액션
-                }) {
-                    Image(systemName: "line.horizontal.3")
-                        .font(.title2)
-                        .foregroundColor(.black)
-                }
-                
                 Spacer()
                 
                 Text(title)
@@ -226,14 +220,6 @@ struct BookHeader: View {
                     .kerning(2)
                 
                 Spacer()
-                
-                Button(action: {
-                    // 알림 버튼 액션
-                }) {
-                    Image(systemName: "bell")
-                        .font(.title2)
-                        .foregroundColor(.black)
-                }
             }
             .padding(.horizontal)
             .padding(.vertical, 10)
@@ -241,7 +227,7 @@ struct BookHeader: View {
             // 하단 구분선
             Rectangle()
                 .frame(height: 1.5)
-                .foregroundColor(Color.black.opacity(0.4))
+                .foregroundColor(Color.black.opacity(0.6))
                 .padding(.horizontal, 0)
         }
     }

@@ -38,7 +38,7 @@ struct MainView: View {
             appearance.backgroundColor = bookBackgroundColor
             
             // 탭 바 경계선 설정 - 더 굵게 적용
-            appearance.shadowColor = UIColor.black.withAlphaComponent(0.5)
+            appearance.shadowColor = UIColor.black.withAlphaComponent(0.6)
             
             // 탭 바에 책 느낌을 주는 경계선 추가 - 더 굵게 적용
             UITabBar.appearance().layer.borderWidth = 2.0

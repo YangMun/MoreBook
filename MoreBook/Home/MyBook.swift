@@ -7,8 +7,9 @@ struct MyBook: View {
             ColorFun.background
                 .edgesIgnoringSafeArea(.all)
             
-            VStack {
-                BookPageHeader(title: "My Book")
+            VStack(spacing: 0) {
+                // 책 스타일 헤더
+                BookHeader(title: "나의 도서")
                 
                 Spacer()
                 
@@ -17,7 +18,7 @@ struct MyBook: View {
                 
                 Spacer()
             }
-            .padding()
+            .padding(.vertical)
         }
     }
 }
