@@ -29,6 +29,9 @@
 		8146CE2E2DA3B6F600611C1C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8146CE2D2DA3B6F600611C1C /* GoogleService-Info.plist */; };
 		8146CE312DA3B7CC00611C1C /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 8146CE302DA3B7CC00611C1C /* FirebaseAnalytics */; };
 		8146CE332DA3B7CC00611C1C /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 8146CE322DA3B7CC00611C1C /* FirebaseFirestore */; };
+		8146CE352DA3BCA300611C1C /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 8146CE342DA3BCA300611C1C /* FirebaseAuth */; };
+		8146CE382DA3BCCE00611C1C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8146CE372DA3BCC400611C1C /* LoginView.swift */; };
+		8146CE3A2DA3BD8600611C1C /* LoginAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8146CE392DA3BD8000611C1C /* LoginAuth.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +57,9 @@
 		8146CE292DA268AD00611C1C /* RecentlyBookCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyBookCard.swift; sourceTree = "<group>"; };
 		8146CE2B2DA26ED000611C1C /* MyBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBook.swift; sourceTree = "<group>"; };
 		8146CE2D2DA3B6F600611C1C /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8146CE372DA3BCC400611C1C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		8146CE392DA3BD8000611C1C /* LoginAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAuth.swift; sourceTree = "<group>"; };
+		8146CE3B2DA63A8F00611C1C /* MoreBook.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MoreBook.entitlements; sourceTree = "<group>"; };
 		F1C45CD598951F48FC3C3022 /* Pods-MoreBook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoreBook.debug.xcconfig"; path = "Target Support Files/Pods-MoreBook/Pods-MoreBook.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -63,6 +69,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8146CE312DA3B7CC00611C1C /* FirebaseAnalytics in Frameworks */,
+				8146CE352DA3BCA300611C1C /* FirebaseAuth in Frameworks */,
 				8103B2012D9E2B2B00F2121D /* Lottie in Frameworks */,
 				8146CE332DA3B7CC00611C1C /* FirebaseFirestore in Frameworks */,
 				2E0F5AF9C5A0E7646C5C504C /* Pods_MoreBook.framework in Frameworks */,
@@ -106,6 +113,8 @@
 		8103B1FA2D9E2AD600F2121D /* MoreBook */ = {
 			isa = PBXGroup;
 			children = (
+				8146CE3B2DA63A8F00611C1C /* MoreBook.entitlements */,
+				8146CE362DA3BCB400611C1C /* Firebase */,
 				8146CE262DA2639F00611C1C /* CoreData */,
 				8103B21C2D9E6E7000F2121D /* Info.plist */,
 				8103B1F62D9E2AD600F2121D /* Preview Content */,
@@ -138,6 +147,15 @@
 				8146CE272DA263B000611C1C /* CoreDataManager.swift */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		8146CE362DA3BCB400611C1C /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				8146CE392DA3BD8000611C1C /* LoginAuth.swift */,
+				8146CE372DA3BCC400611C1C /* LoginView.swift */,
+			);
+			path = Firebase;
 			sourceTree = "<group>";
 		};
 		D952B71CF47E391FE3B693E8 /* Pods */ = {
@@ -178,6 +196,7 @@
 				8103B2002D9E2B2B00F2121D /* Lottie */,
 				8146CE302DA3B7CC00611C1C /* FirebaseAnalytics */,
 				8146CE322DA3B7CC00611C1C /* FirebaseFirestore */,
+				8146CE342DA3BCA300611C1C /* FirebaseAuth */,
 			);
 			productName = MoreBook;
 			productReference = 8103B1E42D9E2ACD00F2121D /* MoreBook.app */;
@@ -277,7 +296,9 @@
 				8103B2072D9E30BE00F2121D /* HomePage.swift in Sources */,
 				8103B2092D9E487A00F2121D /* ClolorFun.swift in Sources */,
 				8103B21B2D9E6E5B00F2121D /* GoogleBooksFunc.swift in Sources */,
+				8146CE382DA3BCCE00611C1C /* LoginView.swift in Sources */,
 				8146CE282DA263B100611C1C /* CoreDataManager.swift in Sources */,
+				8146CE3A2DA3BD8600611C1C /* LoginAuth.swift in Sources */,
 				8103B2132D9E55C800F2121D /* AddViewPage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -410,6 +431,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MoreBook/MoreBook.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MoreBook/Preview Content\"";
@@ -447,6 +469,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MoreBook/MoreBook.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MoreBook/Preview Content\"";
@@ -535,6 +558,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8146CE2F2DA3B7CC00611C1C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
+		};
+		8146CE342DA3BCA300611C1C /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8146CE2F2DA3B7CC00611C1C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
 		};
 /* End XCSwiftPackageProductDependency section */
 

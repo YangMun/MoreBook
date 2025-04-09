@@ -3,7 +3,8 @@ import Lottie
 
 struct LoadingView: View {
     @Environment(\.colorScheme) var colorScheme
-    @State private var showMainView = false
+    @State private var showLoginView = false
+    @StateObject private var loginAuth = LoginAuth.shared
     
     var body: some View {
         ZStack {
@@ -11,10 +12,15 @@ struct LoadingView: View {
             Color(UIColor.systemGray5)
                 .edgesIgnoringSafeArea(.all)
             
-            if showMainView {
-                // 로딩 후 화면 - 메인 뷰로 이동
-                MainView()
-                    .transition(.opacity)
+            if showLoginView {
+                // 로그인 상태에 따라 MainView 또는 LoginView 표시
+                if loginAuth.isLoggedIn {
+                    MainView()
+                        .transition(.opacity)
+                } else {
+                    LoginView()
+                        .transition(.opacity)
+                }
             } else {
                 // 로딩 애니메이션 표시
                 VStack(spacing: 20) {
@@ -29,7 +35,7 @@ struct LoadingView: View {
             // 로딩 애니메이션을 3초 동안 표시
             DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
                 withAnimation {
-                    showMainView = true
+                    showLoginView = true
                 }
             }
         }
