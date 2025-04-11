@@ -9,6 +9,21 @@ class LoginAuth: ObservableObject {
     
     private init() {}
     
+    // 이전 로그인 상태 확인
+    func checkPreviousSignIn() async throws {
+        if let currentUser = Auth.auth().currentUser {
+            // 현재 Firebase 사용자가 있으면 토큰 새로고침
+            try await currentUser.getIDToken(forcingRefresh: true)
+            DispatchQueue.main.async {
+                self.isLoggedIn = true
+            }
+            // UserDefaults에 사용자 정보 저장
+            UserDefaults.standard.set(currentUser.uid, forKey: "firebaseUser")
+        } else {
+            throw NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "No previous sign-in found"])
+        }
+    }
+    
     func signInWithApple() async throws {
         let nonce = randomNonceString()
         let appleIDProvider = ASAuthorizationAppleIDProvider()
@@ -34,6 +49,8 @@ class LoginAuth: ObservableObject {
         )
         
         let authResult = try await Auth.auth().signIn(with: credential)
+        // 로그인 성공 시 UserDefaults에 사용자 정보 저장
+        UserDefaults.standard.set(authResult.user.uid, forKey: "firebaseUser")
         DispatchQueue.main.async {
             self.isLoggedIn = true
         }
